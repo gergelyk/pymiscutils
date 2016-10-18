@@ -6,9 +6,11 @@
 Welcome to miscutils's documentation!
 =====================================
 
-These are miscellaneous python utilities for general use.
+.. raw:: html
 
-Include following submodules:
+    <font color="red">UNTIL VERSION 1.0.0, THIS PACKAGE SHOULD NOT BE CONSIDERED OFFICIAL. SEVERAL CHANGES THAT ARE NOT BACKWARD COMPATIBLE MAY BE APPLIED BEFORE THE FIRST OFFICIAL RELEASE.</font>
+
+These are miscellaneous python utilities for general use. This package includes following submodules:
 
 .. toctree::
    :maxdepth: 2

@@ -3,6 +3,8 @@ iter
 
 This module includes tools for acting with iterators and collections.
 
+----
+
 isfirst
 -------
 

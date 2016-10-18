@@ -6,17 +6,13 @@
 Welcome to miscutils's documentation!
 =====================================
 
-Contents:
+These are miscellaneous python utilities for general use.
+
+Include following submodules:
 
 .. toctree::
    :maxdepth: 2
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   iter
+   shell
 

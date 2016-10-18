@@ -10,7 +10,7 @@ def task_build():
 
 def task_install():
     return {
-        'actions': ['sudo pip3 install dist/miscutils-0.1.tar.gz',
+        'actions': ['sudo pip3 install dist/miscutils-*.tar.gz',
                     'pip3 show miscutils'],
         'file_dep': [],
         'targets': [],

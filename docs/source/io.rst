@@ -3,7 +3,8 @@ io
 
 This module provides tools for interacting with input/output of python script.
 
-----
+Functions
+---------
 
 **prompt** `(msg, validator=None, default=None, err_msg='Invalid value', input_func=input, error_func=print)`
 
@@ -26,8 +27,4 @@ This function prompts user until proper input is provided.
 
     Returned value - user's input.
 
-----
-
->>> print('sfr')
-[1,2,3]
 

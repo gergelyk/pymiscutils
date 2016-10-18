@@ -3,12 +3,10 @@ iter
 
 This module includes tools for acting with iterators and collections.
 
-----
-
 isfirst
 -------
 
-This class wrapps your iterator and turns it into another one, which iterates not only over the original data, but also over boolean flag which equals `True` for the first element and `False` for remaining elements.
+This class wrapps your iterator and turns it into another one, which iterates not only over the original data, but also over boolean flag which equals ``True`` for the first element and ``False`` for remaining elements.
 
 For example:
 
@@ -30,7 +28,7 @@ results in::
 islast
 ------
 
-This class should be used by analogy to the one described in isfirst_. Please note that :code:`islast` invokes :code:`len` function on the original iterator, which means that the iterator must provide this functionality.
+This class should be used by analogy to the one described in isfirst_. Please note that ``islast`` invokes ``len`` function on the original iterator, which means that the iterator must provide this functionality.
 
 For example:
 
@@ -52,7 +50,7 @@ results in::
 isfirstlast
 -----------
 
-Wrappers :code:`isfirst` and :code:`islast` can be combined to provide cumulative functionality.
+Wrappers ``isfirst`` and ``islast`` can be combined to provide cumulative functionality.
 
 For example:
 
@@ -73,7 +71,7 @@ results in::
     Two
     three
 
-Alternatively :code:`isfirstlast` class can be used to get the same results and make syntax more readable.
+Alternatively ``isfirstlast`` class can be used to get the same results and make syntax more readable.
 
 For example:
 

@@ -69,7 +69,7 @@ def task_pypi_submit_live():
 
 def task_test_code():
     return {
-        'actions': ['export PYTHONPATH=$PYTHONPATH:. && py.test tests/isfirstlast.py'],
+        'actions': ['export PYTHONPATH=$PYTHONPATH:. && py.test tests'],
         'file_dep': [],
         'targets': [],
         'clean': [],

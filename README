@@ -1,0 +1,14 @@
+Publishing
+==========
+
+Before publishing, following files must be updated with the version number:
+
+docs/source/conf.py
+    version = 'X.Y.Z'
+    release = 'X.Y.Z'
+
+setup.py:
+    version='X.Y.Z',
+    download_url='https://github.com/gergelyk/pymiscutils/tarball/X.Y.Z',
+
+Relevant git tag must be also created.

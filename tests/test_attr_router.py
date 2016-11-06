@@ -1,5 +1,5 @@
 import pytest
-from miscutils.attr_router import prompt
+from miscutils.attr_router import Proxy, RouterLazy, RouterEager, RouterLazyEx, RouterEagerEx
 
 ###################################################################################################################
 # Proxy

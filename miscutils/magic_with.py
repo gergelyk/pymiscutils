@@ -1,3 +1,4 @@
+from IPython import get_ipython
 from IPython.core.magic import Magics, magics_class, line_magic
 from pprint import pprint
 
@@ -34,11 +35,11 @@ class MagicContextManager(Magics):
         """Close context.
         
         Usage:
-          %with_exit [index=-1] [type] [value] [tb]  
+          %with_exit [index=-1, [type=None, [value=None, [tb=None]]]]
           
         Calls __exit__(type, value, tb) on the object from the stack. Object is removed from the stack.
-        Index on the stack can be overwritten. Default is -1 which corresponds the the last item on the stack.
-        type, value, tb are arguments that are passed to __exit__. Default values are 'None'.
+        Index on the stack can be provided. Default is -1 which corresponds the the last item on the stack.
+        type, value, tb are arguments that are passed to __exit__.
         
         See also: %with_enter, %with_show, %with_clear, %with_get
         """
@@ -87,21 +88,16 @@ class MagicContextManager(Magics):
         self._with_log.clear()
         self._with_stack.clear()
         print('Stack cleared.')
-    
-    def print_with_stack(self):
-        if self._with_log:
-            for i in range(len(self._with_log)):
-                print('{}: {}'.format(i, self._with_log[i]))
-        else:
-            print('(empty)')
             
     @line_magic
     def with_get(self, line):
         """Returns object from stack of %with_enter/%with_exit commands.
         
         Usage:
-          %with_get [line=-1]
+          %with_get [index=-1]
         
+        Index on the stack can be provided. Default is -1 which corresponds the the last item on the stack.
+
         See also: %with_enter, %with_exit, %with_show, %with_clear
         """
         if not self._with_log:

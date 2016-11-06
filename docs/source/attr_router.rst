@@ -1,5 +1,5 @@
-attr_routers
-============
+Attribute Routers
+=================
 
 Attribute router is a dummy object which provides attributes of another object (target) to the user. Names of the attributes can be changed on the fly according to the rules defined in the router. This allows for distributing attributes of the target under different names across multiple objects. This will be referenced further as "splitting object".
 

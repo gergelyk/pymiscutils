@@ -1,5 +1,5 @@
-io
-==
+I/O
+===
 
 This module provides tools for interacting with input/output of python script.
 

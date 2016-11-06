@@ -1,4 +1,4 @@
-shell
+Shell
 =====
 
 This module includes tools for interacting with system shell. Most of the commands require underlying Unix enviroment or at least GNU utilities installed in your system. MSYS seems to be a good candidate for Windows users. This solution hasn't been tested though.

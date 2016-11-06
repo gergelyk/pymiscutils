@@ -1,4 +1,4 @@
-iter
+Iter
 ====
 
 This module includes tools for acting with iterators and collections.

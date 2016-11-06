@@ -3,9 +3,10 @@ miscutils
 
 These are miscellaneous python utilities for general use. This package includes following submodules:
 
-* **iter** - This module includes tools for acting with iterators and collections.
-* **shell** - This module includes tools for interacting with system shell.
-* **io** - This module provides tools for interacting with input/output of python script.
+* **attr_router** - Merging/splitting attributes of the objects.
+* **io** - Interacting with input/output of python script.
+* **iter** - Interacting with iterators and collections.
+* **shell** - Interacting with system shell.
 
 `Documentation <http://pymiscutils.readthedocs.io/>`_
 

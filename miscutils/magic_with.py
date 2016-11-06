@@ -2,21 +2,21 @@ from IPython.core.magic import Magics, magics_class, line_magic
 from pprint import pprint
 
 @magics_class
-class MyMagics(Magics):
+class MagicContextManager(Magics):
 
     _with_log = []
     _with_stack = []
     
     @line_magic
-    def enter(self, line):
+    def with_enter(self, line):
         """Open context.
         
         Usage:
-          %enter object
+          %with_enter object
           
         Calls __enter__ on the object given as an argument. Returns value returned by __enter__. Object is put on stack.
         
-        See also: %exit, %with_log, %with_clear
+        See also: %with_exit, %with_show, %with_clear, %with_get
         """
         
         obj = self.shell.ev(line)
@@ -28,17 +28,17 @@ class MyMagics(Magics):
         return ret
     
     @line_magic
-    def exit(self, line):
+    def with_exit(self, line):
         """Close context.
         
         Usage:
-          %exit [index=-1] [type] [value] [tb]  
+          %with_exit [index=-1] [type] [value] [tb]  
           
         Calls __exit__(type, value, tb) on the object from the stack. Object is removed from the stack.
         Index on the stack can be overwritten. Default is -1 which corresponds the the last item on the stack.
         type, value, tb are arguments that are passed to __exit__. Default values are 'None'.
         
-        See also: %enter, %with_log, %with_clear
+        See also: %with_enter, %with_show, %with_clear, %with_get
         """
         
         if not self._with_log:
@@ -62,25 +62,25 @@ class MyMagics(Magics):
         self.print_with_stack()
         
     @line_magic
-    def with_stack(self, line):
-        """Disply stack of %enter/%exit commands.
+    def with_show(self, line):
+        """Disply stack of %with_enter/%with_exit commands.
         
         Usage:
-          %with_stack
+          %with_show
         
-        See also: %enter, %exit, %with_clear
+        See also: %with_enter, %exit, %with_clear, %with_get
         """
         print('Current with_stack:')
         self.print_with_stack()
     
     @line_magic
     def with_clear(self, line):
-        """Clears stack of %enter/%exit commands.
+        """Clears stack of %with_enter/%with_exit commands.
         
         Usage:
           %with_clear
         
-        See also: %enter, %exit, %with_stack
+        See also: %with_enter, %with_exit, %with_show, %with_get
         """
         self._with_log.clear()
         self._with_stack.clear()
@@ -92,6 +92,35 @@ class MyMagics(Magics):
                 print('{}: {}'.format(i, self._with_log[i]))
         else:
             print('(empty)')
+            
+    @line_magic
+    def with_get(self, line):
+        """Returns object from stack of %with_enter/%with_exit commands.
+        
+        Usage:
+          %with_get [line=-1]
+        
+        See also: %with_enter, %with_exit, %with_show, %with_clear
+        """
+        if not self._with_log:
+            print('with_stack empty.')
+            return
+            
+        if not line:
+            line = '-1'
+
+        index_ = line
+        index = self.shell.ev(index_)
+        return self._with_stack[index]
+    
+    def print_with_stack(self):
+        if self._with_log:
+            for i in range(len(self._with_log)):
+                print('{}: {}'.format(i, self._with_log[i]))
+        else:
+            print('(empty)')
+            
+            
 ip = get_ipython()
-ip.register_magics(MyMagics)
+ip.register_magics(MagicContextManager)
 

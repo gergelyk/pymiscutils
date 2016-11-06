@@ -18,6 +18,7 @@ These are miscellaneous python utilities for general use. This package includes 
    attr_router
    io
    iter
+   listing
    magic_with
    shell
 

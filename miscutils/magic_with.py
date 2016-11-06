@@ -1,6 +1,8 @@
 from IPython.core.magic import Magics, magics_class, line_magic
 from pprint import pprint
 
+#TODO: stack could be cleared at %reset magic
+
 @magics_class
 class MagicContextManager(Magics):
 
@@ -23,7 +25,7 @@ class MagicContextManager(Magics):
         ret = obj.__enter__()
         self._with_log.append(line)
         self._with_stack.append(obj)
-        print('Item appended. Current with_stack:')
+        print('Item appended. Current stack:')
         self.print_with_stack()
         return ret
     
@@ -42,7 +44,7 @@ class MagicContextManager(Magics):
         """
         
         if not self._with_log:
-            print('with_stack empty.')
+            print('Stack empty.')
             return
             
         if not line:
@@ -58,7 +60,7 @@ class MagicContextManager(Magics):
         self._with_stack[index].__exit__(type, value, tb)
         self._with_stack.pop(index)
         self._with_log.pop(index)
-        print('Item popped. Current with_stack:')
+        print('Item popped. Current stack:')
         self.print_with_stack()
         
     @line_magic
@@ -70,7 +72,7 @@ class MagicContextManager(Magics):
         
         See also: %with_enter, %exit, %with_clear, %with_get
         """
-        print('Current with_stack:')
+        print('Current stack:')
         self.print_with_stack()
     
     @line_magic
@@ -84,7 +86,7 @@ class MagicContextManager(Magics):
         """
         self._with_log.clear()
         self._with_stack.clear()
-        print('with_stack cleared.')
+        print('Stack cleared.')
     
     def print_with_stack(self):
         if self._with_log:
@@ -103,7 +105,7 @@ class MagicContextManager(Magics):
         See also: %with_enter, %with_exit, %with_show, %with_clear
         """
         if not self._with_log:
-            print('with_stack empty.')
+            print('Stack empty.')
             return
             
         if not line:

@@ -10,20 +10,16 @@ This class wrapps your iterator and turns it into another one, which iterates no
 
 For example:
 
-.. code-block:: python
+>>> items = ['One', 'Two', 'Three']
+>>> for item, first in isfirst(items):
+...     if first:
+...         print(item.upper())
+...     else:
+...         print(item)
+ONE
+Two
+Three
 
-    items = ['One', 'Two', 'Three']
-    for item, first in isfirst(items):
-        if first:
-            print(item.upper())
-        else:
-            print(item)
-
-results in::
-
-    ONE
-    Two
-    Three
 
 islast
 ------
@@ -32,20 +28,16 @@ This class should be used by analogy to the one described in isfirst_. Please no
 
 For example:
 
-.. code-block:: python
+>>> items = ['One', 'Two', 'Three']
+>>> for item, last in islast(items):
+...     if last:
+...         print(item.upper())
+...     else:
+...         print(item)
+One
+Two
+THREE
 
-    items = ['One', 'Two', 'Three']
-    for item, last in islast(items):
-        if last:
-            print(item.upper())
-        else:
-            print(item)
-
-results in::
-
-    One
-    Two
-    THREE
 
 isfirstlast
 -----------
@@ -54,35 +46,33 @@ Wrappers ``isfirst`` and ``islast`` can be combined to provide cumulative functi
 
 For example:
 
-.. code-block:: python
+>>> items = ['One', 'Two', 'Three']
+>>> for (item, first), last in islast(isfirst(items)):
+...     if first:
+...         print(item.upper())
+...     elif last:
+...         print(item.lower())
+...     else:
+...         print(item)
+ONE
+Two
+three
 
-    items = ['One', 'Two', 'Three']
-    for (item, first), last in islast(isfirst(items)):
-        if first:
-            print(item.upper())
-        elif last:
-            print(item.lower())
-        else:
-            print(item)
-
-results in::
-
-    ONE
-    Two
-    three
 
 Alternatively ``isfirstlast`` class can be used to get the same results and make syntax more readable.
 
 For example:
 
-.. code-block:: python
+>>> items = ['One', 'Two', 'Three']
+>>> for item, first, last in isfirstlast(items):
+...     if first:
+...         print(item.upper())
+...     elif last:
+...         print(item.lower())
+...     else:
+...         print(item)
+ONE
+Two
+three
 
-    items = ['One', 'Two', 'Three']
-    for item, first, last in isfirstlast(items):
-        if first:
-            print(item.upper())
-        elif last:
-            print(item.lower())
-        else:
-            print(item)
 

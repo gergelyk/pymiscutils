@@ -12,3 +12,21 @@ setup.py:
     download_url='https://github.com/gergelyk/pymiscutils/tarball/X.Y.Z',
 
 Relevant git tag must be also created.
+
+
+Process of publishing:
+
+# push the code
+git tag X.Y.Z
+git push
+git push --tags
+
+# make sure that readthedocs published documentation
+
+# update package
+doit build
+doit pypi_submit_live
+
+# install package to your machine
+sudo pip3 install miscutils --no-cache-dir
+

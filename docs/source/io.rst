@@ -3,8 +3,8 @@ io
 
 This module provides tools for interacting with input/output of python script.
 
-Functions
----------
+prompt
+------
 
 **prompt** `(msg, validator=None, default=None, err_msg='Invalid value', input_func=input, error_func=print)`
 

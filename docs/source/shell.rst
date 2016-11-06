@@ -3,8 +3,8 @@ shell
 
 This module includes tools for interacting with system shell. Most of the commands require underlying Unix enviroment or at least GNU utilities installed in your system. MSYS seems to be a good candidate for Windows users. This solution hasn't been tested though.
 
-Functions
----------
+shell
+-----
 
 **shell** `(cmd, *args, **kwargs)`
 
@@ -23,7 +23,8 @@ This function has been inspired by ``%sx`` magic known from IPython. It executes
  'setup.py',
  'tests']
 
-----
+copy_dir
+--------
 
 **copy_dir** `(src, dst)`
 
@@ -31,7 +32,8 @@ Copies src directory recursively on place of dst. If dst already exists, it will
 
 This function uses following commands of Unix shell: `rm`, `cp`
 
-----
+repl_in_paths
+-------------
 
 **repl_in_paths** `(text, repl, top_dir='.')`
 
@@ -55,7 +57,8 @@ invoking ``repl_in_paths('foo', 'bar', '.'):`` will process it as follows::
     my_bar_files\second.py
     my_bar_files\bar.py
 
-----
+repl_in_files
+-------------
 
 **repl_in_files** `(text, repl, top_dir='.')`
 

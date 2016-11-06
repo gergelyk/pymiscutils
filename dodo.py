@@ -76,4 +76,12 @@ def task_test_code():
         'verbosity': 2,
         }
 
+def task_preview_docs():
+    return {
+        'actions': ['cd docs && make html'],
+        'file_dep': [],
+        'targets': [],
+        'clean': [],
+        'verbosity': 2,
+        }
 

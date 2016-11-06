@@ -315,7 +315,7 @@ def RouterLazy(target, selector='', pattern='', subst=''):
     ...     bar = 321
     >>> foo0 = Foo0()
     >>> foo1 = Foo1()
-    >>> foo = RouterLazy(foo0, '^.*0$', '^(.*)0$', r'\\1') + RouterLazy(foo1, '^.*1$', '^(.*)1$', r'\\1')
+    >>> foo = RouterLazy(foo0, '^.*0$', '^(.*)0$', r'\1') + RouterLazy(foo1, '^.*1$', '^(.*)1$', r'\1')
     >>> foo.bar0
     123
     >>> foo.bar1

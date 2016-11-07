@@ -103,11 +103,12 @@ class Router:
     def __add__(self, other):
         # We support only adding two routers of the same kind
 
-        for base in type(self).__bases__:
+        bases = type(self).__bases__
+        for base in bases:
             if not isinstance(other, base):
                 raise CantAddObjects(self, other)
 
-        klass = new_class(type(self).__name__, bases=(type(self),) )
+        klass = new_class(type(self).__name__, bases=bases )
         klass._rules = self._rules + other._rules
         obj = super().__new__(klass)
         return obj

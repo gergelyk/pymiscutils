@@ -352,7 +352,7 @@ def test_lazy_uc_nesting():
 
 def test_lazy_add_eager():
     with pytest.raises(TypeError):
-        RouterLazy(None) + RouterEager(None)
+        RouterLazy(None) + RouterEager(None) + RouterEager(None)
 
 ###################################################################################################################
 # RouterEager
@@ -664,7 +664,7 @@ def test_eager_uc_nesting():
 
 def test_eager_add_lazy():
     with pytest.raises(TypeError):
-        RouterEager(None) + RouterLazy(None)
+        RouterEager(None) + RouterLazy(None) + RouterLazy(None)
 
 
 

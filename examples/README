@@ -1,5 +1,0 @@
-Run from the parent directory. For instance:
-
-export PYTHONPATH=$PYTHONPATH:.
-python examples/isfirstlast.py
-

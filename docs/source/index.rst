@@ -15,7 +15,7 @@ These are miscellaneous python utilities for general use. This package includes 
 .. toctree::
    :maxdepth: 2
 
-   attr_router
+   attr
    io
    iter
    listing

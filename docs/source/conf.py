@@ -18,7 +18,7 @@ import os
 import shlex
 
 # User defined preamble
-top_dir, _ = os.path.split(os.path.split(os.path.split(os.path.abspath(__file__))))
+top_dir = os.path.split(os.path.split(os.path.split(os.path.abspath(__file__))[0])[0])[0]
 
 with open(os.path.join(top_dir, 'VERSION')) as f:
     version = f.readline().strip()

@@ -17,6 +17,30 @@ The easiest way of getting a listing as above is by preparing the following scri
 
 .. code-block:: python
 
+    123 + 345
+    def foo(text):
+        print(text.upper())
+
+    foo('Hello World!')
+
+and running it as follows:
+
+.. code-block:: bash
+
+    python -m pylisting filename [first_line=1 [cell_width=80 [cell_height=10 [compact=True]]]]
+
+or simply:
+
+.. code-block:: bash
+
+    pylisting filename [first_line=1 [cell_width=80 [cell_height=10 [compact=True]]]]
+
+Note that square brackets denote arguments which are optional.
+
+The other option requires of adding one extra line in the script:
+
+.. code-block:: python
+
     from miscutils import listing_here
 
     123 + 345

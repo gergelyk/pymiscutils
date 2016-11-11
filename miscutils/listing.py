@@ -1,12 +1,20 @@
 import inspect
+import sys
+import os
+import traceback
 from pprint import pformat
 
 def execute(code, glo, loc):
     try:
         cell = eval(code, glo, loc)
+        error = False
     except SyntaxError:
+        error = True
+
+    if error:
         exec(code, glo, loc)
         cell = None
+
     return cell
 
 def print_code(code):
@@ -50,12 +58,12 @@ def listing_here(cell_width=80, cell_height=10, compact=True):
     silent_code, verbose_code = read_code(frame.filename, frame.lineno, frame.lineno+1)
     listing(silent_code, verbose_code, cell_width, cell_height, compact)
 
-def listing_file(filename, firstline=1, cell_width=80, cell_height=10, compact=True):
-    """Print listing of the code in the file specified by filename. firstline defines the first
+def listing_file(filename, first_line=1, cell_width=80, cell_height=10, compact=True):
+    """Print listing of the code in the file specified by filename. first_line defines the first
     line of verbose code. Everything above is considered as silent code.
     """
-    # firstline numbers lines from 1
-    silent_code, verbose_code = read_code(filename, firstline, firstline)
+    # first_line numbers lines from 1
+    silent_code, verbose_code = read_code(filename, first_line, first_line)
     listing(silent_code, verbose_code, cell_width, cell_height, compact)
 
 def listing(silent_code, verbose_code, cell_width=80, cell_height=10, compact=True):
@@ -87,5 +95,32 @@ def listing(silent_code, verbose_code, cell_width=80, cell_height=10, compact=Tr
         buf.append(line)
 
     exit(0)
+
+def main():
+    try:
+        defaults = ['', 1, 80, 10, True]
+        args = sys.argv[1:] + defaults[len(sys.argv)-1:]
+        filename, first_line, cell_width, cell_height, compact = args
+        first_line = int(first_line)
+        cell_width = int(cell_width)
+        cell_height = int(cell_height)
+        compact = compact!='False'
+        listing_file(filename, first_line, cell_width, cell_height, compact)
+    except Exception as ex:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        if len(traceback.extract_tb(exc_tb)) >= 4:
+            traceback.print_exc()
+        else:
+            sys.stderr.write(str(ex))
+            sys.stderr.flush()
+            print()
+        print()
+        print('pylisting - executes selected script in python interpreter and prints listing of the code together wiht the partial results.')
+        print()
+        print('Syntax: pylisting filename [first_line=1 [cell_width=80 [cell_height=10 [compact=True]]]]')        
+
+if __name__=='__main__':
+    main()
+
 
 

@@ -16,6 +16,7 @@ setup(
     download_url = 'https://github.com/gergelyk/pymiscutils/tarball/' + version,
     license = 'MIT',
     packages = ['miscutils'],
+    package_data = {'': ['VERSION']}
     keywords = ['iterating', 'head', 'tail', 'listing', 'router', 'proxy', 'prompt', 'shell'],
     classifiers = [],
     entry_points = {

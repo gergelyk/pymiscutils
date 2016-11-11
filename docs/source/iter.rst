@@ -76,20 +76,3 @@ Two
 three
 
 
-index
------
-
-Iterates through items of collection returning subsequent elements and together with their indices.
-
-For example:
-
->>> for x, idx in index(range(7,2,-1)):
-...     print(x, idx)
-7 0
-6 1
-5 2
-4 3
-3 4
-
-
-

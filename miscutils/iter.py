@@ -1,27 +1,4 @@
 
-class index:
-    """Iterates through items of collection returning subsequent elements and together with their indices.
-
-    Example:
-
-        >>> for x, idx in index(range(7,2,-1)):
-        ...     print(x, idx)
-        7 0
-        6 1
-        5 2
-        4 3
-        3 4
-    """
-    def __init__(self, collection):
-        self.collection = collection
-
-    def __len__(self): 
-        return len(self.collection)
-
-    def __iter__(self):
-        for collection, idx in zip(self.collection, range(len(self.collection))):
-            yield (collection, idx)
-
 class isfirst:
     """Iterates through items of collection returning subsequent elements and flag which tells if given element is first.
 

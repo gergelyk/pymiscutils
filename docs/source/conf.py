@@ -17,6 +17,12 @@ import sys
 import os
 import shlex
 
+# User defined preamble
+top_dir, _ = os.path.split(os.path.split(os.path.split(os.path.abspath(__file__))))
+
+with open(os.path.join(top_dir, 'VERSION')) as f:
+    version = f.readline().strip()
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.

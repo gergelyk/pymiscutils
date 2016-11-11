@@ -122,5 +122,16 @@ def main():
 if __name__=='__main__':
     main()
 
+# Known issues:
+#
+# __file__ in eval()/exec() becames undefined
+#
+# Arrays defined in multiple lines which start from beginning of the line raise an exception. Ex.
+# a = [
+# 1,
+# 2,
+# 3,
+# ]
+#
 
 

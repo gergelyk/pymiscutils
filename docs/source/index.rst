@@ -15,10 +15,11 @@ These are miscellaneous python utilities for general use. This package includes 
 .. toctree::
    :maxdepth: 2
 
-   attr
    io
    iter
    listing
    magic_with
+   pyext
+   routers
    shell
 

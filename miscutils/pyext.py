@@ -35,7 +35,7 @@ class AttrExt:
         Hello world!         
     """
 
-    # preserves attributes identified by non-string names
+    # stores attributes identified by non-string names
     _dictext = {}
 
     def __getitem__(self, name):

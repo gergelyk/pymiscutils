@@ -12,6 +12,8 @@ Enable child class to use attributes which are identified by non-string names. A
 
 **Examples**
 
+Attributes defined by string names.
+
 >>> class Foo(AttrExt): pass
 >>> foo = Foo()
 >>> foo.abc = 123
@@ -24,6 +26,8 @@ Enable child class to use attributes which are identified by non-string names. A
 >>> foo.cde
 345
 
+Attributes defined by non-string names.
+
 >>> class Foo(AttrExt): pass
 >>> foo = Foo()
 >>> obj = object()
@@ -33,6 +37,8 @@ Enable child class to use attributes which are identified by non-string names. A
 'xyz'
 >>> foo[obj]
 'zyx'
+
+Methods.
 
 >>> class Foo(AttrExt):
 ...     def bar(self):

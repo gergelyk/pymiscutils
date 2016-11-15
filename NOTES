@@ -1,18 +1,9 @@
 Publishing
 ==========
 
-Before publishing, following files must be updated with the version number:
-
-docs/source/conf.py
-    version = 'X.Y.Z'
-    release = 'X.Y.Z'
-
-setup.py:
-    version='X.Y.Z',
-    download_url='https://github.com/gergelyk/pymiscutils/tarball/X.Y.Z',
+Before publishing update VERSION file with the version number.
 
 Relevant git tag must be also created.
-
 
 Process of publishing:
 
@@ -28,5 +19,5 @@ doit build
 doit pypi_submit_live
 
 # install package to your machine
-sudo pip3 install miscutils --no-cache-dir
+sudo pip3 install miscutils --upgrade
 

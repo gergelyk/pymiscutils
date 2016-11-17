@@ -35,7 +35,11 @@ def repl_in_files(text, repl, top_dir='.'):
     """ Scans top_dir recursively to find given text in the content of files. Then replaces this text by repl.
         This function uses following commands of Unix shell: grep, sed
     """
-    to_modify = shell("grep -r {} {} | grep -o '^[^:]*'", text, top_dir)
-    for file_path in to_modify:
-        shell("sed -i 's/{}/{}/' {}", text, repl, file_path)
+    try:
+        # this line will raise an Exception if nothing found
+        to_modify = shell("grep -r {} {} | grep -o '^[^:]*'", text, top_dir)
+        for file_path in to_modify:
+            shell("sed -i 's/{}/{}/' {}", text, repl, file_path)
+    except:
+        pass
 

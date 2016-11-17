@@ -1,4 +1,4 @@
-PACKAGE = 'miscutils'
+PACKAGE = '_PACKAGE_NAME_'
 
 def task_prepenv():
     """Prepare environment for other commands."""
@@ -7,7 +7,7 @@ def task_prepenv():
         'file_dep': [],
         'task_dep': [],
         'targets': [],
-        'clean': ['rm -fr __pycache__ {}/__pycache__ .doit.db'.format(PACKAGE)],
+        'clean': ['rm -fr __pycache__ {}/__pycache__ .doit.db .cache'.format(PACKAGE)],
         'verbosity': 2,
         }
 

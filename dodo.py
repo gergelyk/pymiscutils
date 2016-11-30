@@ -1,4 +1,4 @@
-PACKAGE = '_PACKAGE_NAME_'
+PACKAGE = 'miscutils'
 
 def task_prepenv():
     """Prepare environment for other commands."""

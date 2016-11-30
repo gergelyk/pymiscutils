@@ -22,4 +22,5 @@ These are miscellaneous python utilities for general use. This package includes 
    pyext
    routers
    shell
+   tree
 

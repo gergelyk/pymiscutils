@@ -427,3 +427,4 @@ def RouterEager(target, selector='', pattern='', subst=''):
     """
     return RouterEagerEx([ (target, lambda name: re.search(selector, name), lambda name: re.sub(pattern, subst, name)) ])
 
+

@@ -1,8 +1,7 @@
 from setuptools import setup
 import os
 
-package = 'miscutils'
-version = open(os.path.join(os.path.dirname(__file__), os.path.join(package, 'VERSION'))).read().strip()
+version = open(os.path.join(os.path.dirname(__file__), os.path.join('miscutils', 'VERSION'))).read().strip()
 
 setup(
     name = 'miscutils',
@@ -13,7 +12,7 @@ setup(
     url = 'https://github.com/gergelyk/pymiscutils',
     download_url = 'https://github.com/gergelyk/pymiscutils/tarball/' + version,
     license = 'MIT',
-    packages = [package],
+    packages = ['miscutils'],
     package_data = {'': ['VERSION']},
     keywords = ['iterating', 'head', 'tail', 'listing', 'router', 'proxy', 'prompt', 'shell'],
     classifiers = [],

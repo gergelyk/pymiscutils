@@ -17,31 +17,33 @@ class Config:
     >>> cfg.var1
     123
     >>> d = list(map(lambda key: cfg[key], ['var1', 'var2']))
-    []
+    [123, 456]
 
-    >>> accessing all values (in order)
+    Accessing all values (in order)
     >>> cfg[:]
     [123, 345]
 
-    >>> accessing all keys (in order)
+    Accessing all keys (in order)
     >>> [x for x in cfg]
     ['var1', 'var2']
     >>> list(cfg)
+    ['var1', 'var2']
+    >>> tuple(cfg)
     ('var1', 'var2')
     >>> set(cfg)
     {'var1', 'var2'}
 
-    >>> accessing other properties
+    Accessing items (in order)
+    >>> {x: cfg[x] for x in cfg}
+    {'var1': 123, 'var2': 345}
+
+    Accessing other properties
     >>> len(cfg)
     2
     >>> str(cfg)
-    "{'var1': 123, 'var2': 345}"
+    "OrderedDict([('var1', 123), ('var2', 456)])"
     >>> repr(cfg)
-    "{'var1': 123, 'var2': 345}"
-
-    >>> accessing items (in order)
-    >>> {x: cfg[x] for x in cfg}
-    {'var1': 123, 'var2': 345}
+    "OrderedDict([('var1', 123), ('var2', 456)])"
 
     Note: dict(cfg) is not supported.
 

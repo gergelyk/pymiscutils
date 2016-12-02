@@ -15,6 +15,7 @@ These are miscellaneous python utilities for general use. This package includes 
 .. toctree::
    :maxdepth: 2
 
+   config
    io
    iter
    listing

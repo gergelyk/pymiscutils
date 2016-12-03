@@ -1,6 +1,9 @@
 import re
 from itertools import chain
 
+class ErrorBranchLocked(KeyError): pass
+class ErrorAttributeDuplicated(Exception): pass
+
 class Branch:
     """ Branch that is a component of the tree. See tree() function. Note that
         Branch implements idea of Extended Attributes. This means that attributes
@@ -40,7 +43,7 @@ class Branch:
             setattr(self._root, self._leaves[name], value)
         else:
             if self._locked:
-                raise Exception('This object is locked. You cannot add attributes.')
+                raise ErrorBranchLocked('This object is locked. You cannot add attributes.')
             else:
                 super().__setattr__(name, value)
 
@@ -170,7 +173,7 @@ def add_sub_branch(root, parent, orig, split):
     attr = split[0]
     if len(split) == 1:
         if attr in parent._keys():
-            raise Exception('Attribute {} duplicated'.format(attr))
+            raise ErrorAttributeDuplicated('Attribute {} duplicated'.format(attr))
         else:
             # Add leaf
             parent._leaves[attr] = orig
@@ -178,7 +181,7 @@ def add_sub_branch(root, parent, orig, split):
         if attr in parent._keys():
             # Add to existing branch
             if not isinstance(parent[attr], Branch):
-                raise Exception('Attribute {} duplicated'.format(attr))
+                raise ErrorAttributeDuplicated('Attribute {} duplicated'.format(attr))
             add_sub_branch(root, parent[attr], orig, split[1:])
         else:
             # Add to new branch
@@ -206,6 +209,12 @@ def split_attr_default(attr):
     segments = [p.strip() for p in re.split(r'[\.]', attr)]
     parts = chain(*map(split_segment, segments))
     return list(parts)
+
+def lock(branch):
+    branch._locked = True
+    for b in branch._values():
+        if isinstance(b, Branch):
+            lock(b)
 
 def tree(obj, split_attr=split_attr_default):
     """ Create a structure of Branch objects that is described by names of the
@@ -267,6 +276,6 @@ def tree(obj, split_attr=split_attr_default):
     for orig in splits:
         add_sub_branch(obj, branch, orig, splits[orig])
 
-    branch._locked = True
+    lock(branch)
     return branch
 

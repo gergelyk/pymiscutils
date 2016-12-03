@@ -1,4 +1,5 @@
-from miscutils.tree import tree
+import pytest
+from miscutils.tree import tree, ErrorBranchLocked
 from textwrap import dedent
 
 def test_simple():
@@ -109,3 +110,25 @@ def test_branches_at_mixed():
     
     assert(dedent(ref).strip() == str(s))
     
+def test_locking_write():
+
+    class C: pass
+    c = C()
+    setattr(c, 'foo.bar.baz', 123)
+    s = tree(c)
+
+    with pytest.raises(ErrorBranchLocked):
+        s.foo.bar.qux = 123
+
+def test_locking_read():
+
+    class C: pass
+    c = C()
+    setattr(c, 'foo.bar.baz', 123)
+    s = tree(c)
+
+    with pytest.raises(KeyError):
+        s.foo.bar.qux
+
+
+

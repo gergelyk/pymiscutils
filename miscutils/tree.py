@@ -65,16 +65,16 @@ class Branch:
         lvs = [key for key in self._leaves.keys() if isinstance(key, str)]
         return list(set(cls + obj + ext + lvs))
 
-    def _keys(self, plainonly=False, visibleonly=False, numericonly=False, sort=False):
+    def _keys(self, plain_only=False, visible_only=False, numeric_only=False, sort=False):
         """ Return list of all the attributes, including these which __dir__
         wouldn't return.
         Following filters can be enabled (and also combined):
 
-        * plainonly - only attribs with textual names that are valid Python
+        * plain_only - only attribs with textual names that are valid Python
             identifiers.
-        * visibleonly - only attribs with non-textual names and these with
+        * visible_only - only attribs with non-textual names and these with
             textual names that don't start with underscore.
-        * numericonly - only attribs with numeric names (indices)
+        * numeric_only - only attribs with numeric names (indices)
 
         'sort' option can be used only when the resulting list is sortable.
         """
@@ -93,13 +93,13 @@ class Branch:
         def isnumeric(a):
             return isinstance(a, int)
 
-        if plainonly:
+        if plain_only:
             keys = filter(isplain, keys)
 
-        if visibleonly:
+        if visible_only:
             keys = filter(isvisible, keys)
 
-        if numericonly:
+        if numeric_only:
             keys = filter(isnumeric, keys)
 
         if sort:
@@ -107,27 +107,27 @@ class Branch:
 
         return list(keys)
 
-    def _values(self, plainonly=False, visibleonly=False, numericonly=False, sort=False):
-        """ Return values of the attributes.
+    def _values(self, plain_only=False, visible_only=False, numeric_only=False, sort=False):
+        """ Return values of the attributes. Sort can be used to sort values by keys.
         """
-        keys = self._keys(plainonly, visibleonly, numericonly, sort)
+        keys = self._keys(plain_only, visible_only, numeric_only, sort)
         return (self[key] for key in keys)
 
-    def _items(self, plainonly=False, visibleonly=False, numericonly=False, sort=False):
-        """ Return (key, value) pairs that connect names and values of the attributes.
+    def _items(self, plain_only=False, visible_only=False, numeric_only=False, sort=False):
+        """ Return (key, value) pairs that connect names and values of the attributes. Sort can be used to sort items by keys.
         """
-        keys = self._keys(plainonly, visibleonly, numericonly, sort)
+        keys = self._keys(plain_only, visible_only, numeric_only, sort)
         return ( (key, self[key]) for key in keys)
 
     def __iter__(self):
-        """ Iterate through numerical attributes.
+        """ Iterate through numerical attributes. Sorting not guaranteed.
         """
-        return self._values(numericonly=True)
+        return self._values(numeric_only=True)
 
     def __len__(self):
         """ Say how many numerical attributes we have.
         """
-        return len(self._keys(numericonly=True))
+        return len(self._keys(numeric_only=True))
 
     def __getitem__(self, name):
         if isinstance(name, str):
@@ -152,7 +152,7 @@ class Branch:
         """
         def disp(lines, value, level=0):
             indent = ' '*2
-            keys = value._keys(visibleonly=True)
+            keys = value._keys(visible_only=True)
             names = [(k, k) if isinstance(k, str)
                      else (k, '[' + str(k) + ']') for k in keys]
 

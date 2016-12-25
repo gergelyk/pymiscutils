@@ -10,7 +10,7 @@ def shell(cmd, *args, **kwargs):
         lines = ret.split('\n')
     else:
         lines = []
-    return lines
+    return [line.rstrip('\r') for line in lines]
 
 def copy_dir(src, dst):
     """ Copies src directory recursively on place of dst. If dst already exists, it will be removed first.

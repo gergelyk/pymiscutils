@@ -8,7 +8,7 @@ setup(
     version = version,
     description = 'Miscellaneous utilities for general use.',
     author = 'Grzegorz Krason',
-    author_email = 'grzegorz@krason.biz',
+    author_email = 'grzegorz@krason.me',
     url = 'https://github.com/gergelyk/pymiscutils',
     download_url = 'https://github.com/gergelyk/pymiscutils/tarball/' + version,
     license = 'MIT',

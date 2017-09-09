@@ -7,9 +7,13 @@ def getdefault(func, argname):
 
     spec = inspect.getfullargspec(func)
 
+    # these attributes can be None
+    spec_defaults = spec.defaults if spec.defaults else []
+    spec_kwonlydefaults = spec.kwonlydefaults if spec.kwonlydefaults else {}
+
     if argname in spec.args:
         args_rev = spec.args[::-1]
-        defs_rev = spec.defaults[::-1]
+        defs_rev = spec_defaults[::-1]
         idx = args_rev.index(argname)
         try:
             return defs_rev[idx]
@@ -17,8 +21,8 @@ def getdefault(func, argname):
             raise RuntimeError(f"Positional argument '{argname}' doesn't have default value.") from None
 
     elif argname in spec.kwonlyargs:
-        if argname in spec.kwonlydefaults:
-            return spec.kwonlydefaults[argname]
+        if argname in spec_kwonlydefaults:
+            return spec_kwonlydefaults[argname]
         else:
             raise RuntimeError(f"Keyword-only argument '{argname}' doesn't have default value.")
     elif argname in (spec.varargs, spec.varkw):

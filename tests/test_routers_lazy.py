@@ -1,5 +1,5 @@
 import pytest
-from miscutils.routers import RouterLazy, RouterLazyEx, RouterEager
+from miscutils.user.routers import RouterLazy, RouterLazyEx, RouterEager
 
 ####################
 # RouterLazy Reading

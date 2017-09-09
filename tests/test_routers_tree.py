@@ -1,5 +1,5 @@
 import pytest
-from miscutils.tree import tree, ErrorBranchLocked
+from miscutils.user.tree import tree, ErrorBranchLocked
 from textwrap import dedent
 
 def test_simple():
@@ -12,7 +12,7 @@ def test_simple():
     setattr(c, 'bar.y', 456)
     s = tree(c)
 
-    ref = """    
+    ref = """
     bar
       x = 345
       y = 456
@@ -32,14 +32,14 @@ def test_leaves_at_indices():
     setattr(c, 'foo.x02', 345)
     s = tree(c)
 
-    ref = """    
+    ref = """
     foo
       x
         [0] = 123
         [1] = 234
         [2] = 345
     """
-    
+
     assert(dedent(ref).strip() == str(s))
 
 def test_branches_at_indices():
@@ -51,7 +51,7 @@ def test_branches_at_indices():
     setattr(c, 'foo.x02.bar', 345)
     s = tree(c)
 
-    ref = """    
+    ref = """
     foo
       x
         [0]
@@ -61,9 +61,9 @@ def test_branches_at_indices():
         [2]
           bar = 345
     """
-    
+
     assert(dedent(ref).strip() == str(s))
-    
+
 def test_leaves_at_mixed():
 
     class C: pass
@@ -74,7 +74,7 @@ def test_leaves_at_mixed():
     setattr(c, 'foo.x.bar', 456)
     s = tree(c)
 
-    ref = """    
+    ref = """
     foo
       x
         [0] = 123
@@ -82,9 +82,9 @@ def test_leaves_at_mixed():
         [2] = 345
         bar = 456
     """
-    
+
     assert(dedent(ref).strip() == str(s))
-    
+
 def test_branches_at_mixed():
 
     class C: pass
@@ -95,7 +95,7 @@ def test_branches_at_mixed():
     setattr(c, 'foo.x.bar.baz', 456)
     s = tree(c)
 
-    ref = """    
+    ref = """
     foo
       x
         [0]
@@ -107,9 +107,9 @@ def test_branches_at_mixed():
         bar
           baz = 456
     """
-    
+
     assert(dedent(ref).strip() == str(s))
-    
+
 def test_locking_write():
 
     class C: pass

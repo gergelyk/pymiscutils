@@ -3,15 +3,14 @@ miscutils
 
 These are miscellaneous python utilities for general use. This package includes following submodules:
 
-* **config** - Class desired to store configuration data of your application.
+* **func** - Utilities related to functions.
+* **insp** - Utilities for inspecting the code.
 * **io** - Interacting with input/output of python script.
 * **iter** - Interacting with iterators and collections.
-* **listing** - Preparing listings of Python code.
-* **magic_with** - Magic functions for IPython which do context management.
-* **pyext** - Python language extensions.
-* **routers** - Merging/splitting attributes of the objects.
-* **shell** - Interacting with system shell.
-* **tree** - Structurize attributes of given object.
+* **os** - Operating system related utilities.
+* **str** - Handling strings.
+* **tools** - Not the code, but utilities for programmers.
+* **user** - User data processing.
 
 `Documentation <http://pymiscutils.readthedocs.io/>`_
 

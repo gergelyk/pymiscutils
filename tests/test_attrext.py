@@ -1,4 +1,4 @@
-from miscutils.pyext import AttrExt
+from miscutils.user.experimental.attrext import AttrExt
 
 def test_set_by_str_name():
     class Foo(AttrExt): pass

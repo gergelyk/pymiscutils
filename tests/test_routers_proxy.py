@@ -1,5 +1,6 @@
 import pytest
-from miscutils.routers import Proxy, RouterLazy
+from miscutils.user.routers import RouterLazy
+from miscutils.user.proxy import Proxy
 
 def test_proxy_dir_default():
 
@@ -8,7 +9,7 @@ def test_proxy_dir_default():
 
     foo = Foo()
     px = Proxy(foo)
-    
+
     assert('x' in dir(px))
 
 def test_proxy_dir_user():
@@ -18,7 +19,7 @@ def test_proxy_dir_user():
 
     foo = Foo()
     px = Proxy(foo, ['y'])
-    
+
     assert('x' not in dir(px))
     assert('y' in dir(px))
 
@@ -29,7 +30,7 @@ def test_proxy_rd():
 
     foo = Foo()
     px = Proxy(foo)
-    
+
     assert(px.x == 123)
 
 def test_proxy_wr():

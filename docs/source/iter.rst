@@ -1,4 +1,4 @@
-Iter
+iter
 ====
 
 This module includes tools for acting with iterators and collections.
@@ -76,3 +76,20 @@ Two
 three
 
 
+iget
+----
+
+Get ``index``-nth element from iterable.
+
+For example:
+
+>>> g = range(10)
+>>> iget(g, 5)
+5
+
+>>> def genfunc():
+...     while True:
+...         yield from 'abcd'
+>>> g = genfunc()
+>>> iget(g, 2)
+'c'

@@ -1,5 +1,5 @@
 import pytest
-from miscutils.config import Config
+from miscutils.io.experimental.config import Config
 
 @pytest.fixture(scope="session")
 def cfg():

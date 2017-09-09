@@ -1,3 +1,4 @@
+from itertools import islice
 
 class isfirst:
     """Iterates through items of collection returning subsequent elements and flag which tells if given element is first.
@@ -24,7 +25,7 @@ class isfirst:
     def __init__(self, collection):
         self.collection = collection
 
-    def __len__(self): 
+    def __len__(self):
         return len(self.collection)
 
     def __iter__(self):
@@ -32,7 +33,7 @@ class isfirst:
         for collection in self.collection:
             yield (collection, first)
             first = False
-            
+
 class islast:
     """Iterates through items of collection returning subsequent elements and flag which tells if given element is last.
 
@@ -58,7 +59,7 @@ class islast:
     def __init__(self, collection):
         self.collection = collection
 
-    def __len__(self): 
+    def __len__(self):
         return len(self.collection)
 
     def __iter__(self):
@@ -82,7 +83,7 @@ class isfirstlast:
     def __init__(self, collection):
         self.collection = collection
 
-    def __len__(self): 
+    def __len__(self):
         return len(self.collection)
 
     def __iter__(self):
@@ -92,3 +93,6 @@ class isfirstlast:
             yield (collection, first, index_rev==0)
             first = False
 
+def iget(iterable, index):
+    """Get `index`-nth element from iterable."""
+    return [*islice(iterable, index, index+1)][0]

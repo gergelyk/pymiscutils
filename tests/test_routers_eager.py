@@ -1,5 +1,5 @@
 import pytest
-from miscutils.routers import RouterEager, RouterEagerEx, RouterLazy
+from miscutils.user.routers import RouterEager, RouterEagerEx, RouterLazy
 
 #####################
 # RouterEager Reading
@@ -111,7 +111,7 @@ def test_eager_dir_call():
         x = 123
         y = property(lambda obj: None)
         def m(self): pass
-        
+
     foo = Foo()
     foo.z = 123
 

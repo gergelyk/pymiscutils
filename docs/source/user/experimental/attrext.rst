@@ -1,10 +1,5 @@
-Python Extensions
-=================
-
-Python language extensions.
-
 AttrExt
--------
+=======
 
 **AttrExt** `()`
 

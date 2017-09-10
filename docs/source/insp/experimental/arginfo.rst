@@ -53,18 +53,15 @@ b True
 c True
 d True
 
-* Print details of the arguments:
+* arginfo resources refer to the args of first function on current stack, which is decorated by arginfo decorator. This way you can access args of the caller:
 
->>> @arginfo
-... def foo(a, b=123, *, c, d=456):
-...     print(arginfo.a)
-...     print(arginfo.b)
-...     print(arginfo.c)
-...     print(arginfo.d)
->>> foo(1,c=2)
-Argument(isset=True, value=1)
-Argument(defval=123, isset=False, value=123)
-Argument(isset=True, value=2)
-Argument(defval=456, isset=False, value=456)
-
-
+>>> def print_args():           
+...     for arg in arginfo:     
+...         print(arg, arginfo[arg])
+>>> foo(1)
+x Argument(isset=True, value=1)
+y Argument(defval=123, isset=False, value=123)
+>>> foo(x=0, y=123, z=321)
+z Argument(isset=True, value=321)
+x Argument(isset=True, value=0)
+y Argument(defval=123, isset=True, value=123)

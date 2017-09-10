@@ -58,6 +58,8 @@ d True
 >>> def print_args():           
 ...     for arg in arginfo:     
 ...         print(arg, arginfo[arg])
+>>> def foo(x, y=123, **kwargs):
+...     print_args()  
 >>> foo(1)
 x Argument(isset=True, value=1)
 y Argument(defval=123, isset=False, value=123)

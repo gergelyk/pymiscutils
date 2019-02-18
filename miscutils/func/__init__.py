@@ -31,15 +31,15 @@ def catch(func):
 
 def retry(max_attempts=5, interval=0.0, min_delay=0.0, deadline=None, exceptions=(Exception,)):
     """Decorator that retries calling unreliable functions
-    max_attempts - maximum number of times that function can be called
+    max_attempts - maximum number of times that function can be called, None means infinity
     interval - intended interval between attempts (unless duration of the function call exceeds this interval)
     min_delay - minimum delay after one call is finished and before next call begins
-    deadline - overal time allowed for making attempts (excluding duration of the last call)
+    deadline - overal time allowed for making attempts (excluding duration of the last call), None means infinity
     exceptions - exception type or tuple of types that specify on which exceptions re-try can be made
     """
     @decorator
     def retry_(func, *args, **kwargs):
-        assert max_attempts >= 1
+        assert max_attempts is None or max_attempts >= 1
         assert interval >= 0
         assert min_delay >= 0
         func_name = func.__name__
@@ -57,7 +57,7 @@ def retry(max_attempts=5, interval=0.0, min_delay=0.0, deadline=None, exceptions
 
                 # check number of attempts
                 attempt += 1
-                if attempt >= max_attempts:
+                if max_attempts is not None and attempt >= max_attempts:
                     log.debug(f"Max number of {func_name!r} re-tries exceeded")
                     raise
 

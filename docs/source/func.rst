@@ -24,3 +24,14 @@ True
 False
 >>> ret
 ValueError('math domain error')
+
+
+retry
+-----
+Decorator that retries calling unreliable functions
+max_attempts - maximum number of times that function can be called
+interval - intended interval between attempts (unless duration of the function call exceeds this interval)
+min_delay - minimum delay after one call is finished and before next call begins
+deadline - overal time allowed for making attempts (excluding duration of the last call)
+exceptions - exception type or tuple of types that specify on which exceptions re-try can be made
+

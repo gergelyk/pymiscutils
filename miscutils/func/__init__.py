@@ -29,7 +29,7 @@ def catch(func):
     return wrapper
 
 
-def retry(max_attempts=5, interval=0.0, min_delay=0.0, deadline=None, exceptions=(Exception,)):
+def retry(max_attempts=None, interval=0.0, min_delay=0.0, deadline=None, exceptions=(Exception,)):
     """Decorator that retries calling unreliable functions
     max_attempts - maximum number of times that function can be called, None means infinity
     interval - intended interval between attempts (unless duration of the function call exceeds this interval)

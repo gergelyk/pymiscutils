@@ -1,10 +1,10 @@
 from time import sleep, time
-from decorator import decorator
+from functools import wraps
 import inspect
 import logging
 
 
-log = logging.getLogger(__file__)
+log = logging.getLogger(__name__)
 #logging.basicConfig(level=logging.DEBUG)
 
 
@@ -37,41 +37,48 @@ def retry(max_attempts=None, interval=0.0, min_delay=0.0, deadline=None, excepti
     deadline - overal time allowed for making attempts (excluding duration of the last call), None means infinity
     exceptions - exception type or tuple of types that specify on which exceptions re-try can be made
     """
-    @decorator
-    def retry_(func, *args, **kwargs):
-        assert max_attempts is None or max_attempts >= 1
-        assert interval >= 0
-        assert min_delay >= 0
-        func_name = func.__name__
-        attempt = 0
-        first_ts = time()
-        current_ts = first_ts
 
-        while True:
-            last_ts = current_ts
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            assert max_attempts is None or max_attempts >= 1
+            assert interval >= 0
+            assert min_delay >= 0
             try:
-                return func(*args, **kwargs)
-            except exceptions as exc:
+                func_name = func.__name__
+            except AttributeError:
+                func_name = repr(func)
 
-                log.debug(f"Exception occurred while calling {func_name!r}: {exc!r}")
+            attempt = 0
+            first_ts = time()
+            current_ts = first_ts
 
-                # check number of attempts
-                attempt += 1
-                if max_attempts is not None and attempt >= max_attempts:
-                    log.debug(f"Max number of {func_name!r} re-tries exceeded")
-                    raise
+            while True:
+                last_ts = current_ts
+                try:
+                    return func(*args, **kwargs)
+                except exceptions as exc:
 
-                # check deadline
-                current_ts = time()
-                remaining_time = max(0, interval - (current_ts - last_ts))
-                sleep_time = max(remaining_time, min_delay)
-                if deadline is not None and current_ts + sleep_time - first_ts > deadline:
-                    log.debug(f"Deadline for {func_name!r} exceeded")
-                    raise
+                    log.debug(f"Exception occurred while calling {func_name!r}: {exc!r}")
 
-                # wait until interval remains
-                sleep(sleep_time)
-                log.debug(f"Retrying with {func_name!r}")
+                    # check number of attempts
+                    attempt += 1
+                    if max_attempts is not None and attempt >= max_attempts:
+                        log.debug(f"Max number of {func_name!r} re-tries exceeded")
+                        raise
 
-    return retry_
+                    # check deadline
+                    current_ts = time()
+                    remaining_time = max(0, interval - (current_ts - last_ts))
+                    sleep_time = max(remaining_time, min_delay)
+                    if deadline is not None and current_ts + sleep_time - first_ts > deadline:
+                        log.debug(f"Deadline for {func_name!r} exceeded")
+                        raise
+
+                    # wait until interval remains
+                    sleep(sleep_time)
+                    log.debug(f"Retrying with {func_name!r}")
+
+        return wrapper
+    return decorator
 

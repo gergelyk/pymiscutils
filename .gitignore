@@ -1,1 +1,5 @@
+dist/
+docs/build
+.venv
 **/__pycache__
+**/miscutils.egg-info

@@ -6,6 +6,7 @@ These are miscellaneous python utilities for general use.
 .. toctree::
    :maxdepth: 2
 
+   dbg
    func
    insp
    io

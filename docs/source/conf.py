@@ -18,9 +18,9 @@ import os
 import shlex
 
 # User defined preamble
-top_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-version_path = os.path.join(top_dir, os.path.join('miscutils', 'VERSION'))
-version_ = open(version_path).read().strip()
+
+from importlib.metadata import version
+version_ = version('miscutils')
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the

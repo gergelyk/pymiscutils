@@ -19,8 +19,7 @@ import shlex
 
 # User defined preamble
 
-from pkg_resources import get_distribution
-version_ = '.'.join(str(get_distribution('miscutils')).strip().split('.')[:3])
+version_ = '1.4.0'
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the

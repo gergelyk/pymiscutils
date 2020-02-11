@@ -39,10 +39,10 @@ python3.8 -m poetry run pytest tests
 Update version in `pyproject.toml`. Then:
 
 ```sh
-python3.7 -m poetry build
 git tag X.Y.Z
 git push
 git push --tags
+python3.7 -m poetry build
 python3.7 -m poetry publish
 ```
 
